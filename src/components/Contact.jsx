@@ -1,141 +1,162 @@
-import React, { useRef, useState } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { Mail, MapPin, Phone, Send, Loader2 } from 'lucide-react';
-import emailjs from '@emailjs/browser';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Github, Linkedin, Mail, MapPin, Send, Terminal } from 'lucide-react';
 
 const Contact = () => {
-    const sectionRef = useRef(null);
-    const { scrollYProgress } = useScroll({
-        target: sectionRef,
-        offset: ["start end", "end start"]
-    });
+  return (
+    <section id="contact" className="py-32 relative z-10 border-t border-white/5 bg-black">
+      <div className="max-w-6xl mx-auto w-full px-6 md:px-12">
 
-    const decorY1 = useTransform(scrollYProgress, [0, 1], [-80, 80]);
-    const decorY2 = useTransform(scrollYProgress, [0, 1], [40, -40]);
+        <div className="grid lg:grid-cols-2 gap-16">
 
-    const form = useRef();
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [submitStatus, setSubmitStatus] = useState(null); // 'success' | 'error' | null
+          {/* Left Text */}
+          <div className="flex flex-col justify-center">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="flex items-center gap-2 text-ai-cyan font-mono text-xs tracking-[0.3em] uppercase mb-6">
+                <Terminal size={14} /> Connect
+              </h2>
+              <h3 className="text-3xl md:text-5xl font-goodtimes uppercase tracking-normal mb-6 leading-[1.2]">
+                Let's Build Something <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-ai-cyan to-ai-blue" style={{ textShadow: '0 0 10px rgba(34, 211, 238, 0.25)' }}>Future-Ready</span>
+              </h3>
+              <p className="text-ai-text-secondary text-lg font-light max-w-md mb-12">
+                Open to collaborations, AI projects, experimental interfaces, and innovative digital experiences.
+              </p>
+            </motion.div>
 
-    const sendEmail = (e) => {
-        e.preventDefault();
-        setIsSubmitting(true);
-        setSubmitStatus(null);
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="flex flex-col gap-6"
+            >
+              <div className="flex items-center gap-4 group">
+                <div className="w-12 h-12 rounded-full glass-panel flex items-center justify-center text-white/50 group-hover:text-ai-cyan group-hover:border-ai-cyan/50 transition-all">
+                  <Mail size={20} />
+                </div>
+                <div>
+                  <p className="text-xs font-mono text-white/40 uppercase tracking-widest mb-1">Email Protocol</p>
+                  <a href="mailto:nithishparameswaran2005@gmail.com" className="text-white hover:text-ai-cyan transition-colors text-sm md:text-base">
+                    nithishparameswaran2005@gmail.com
+                  </a>
+                </div>
+              </div>
 
-        emailjs.sendForm(
-            'service_6gq4pnq',
-            'template_h3w6t6f',
-            form.current,
-            'xMYHbjEz0Or-YhcwP'
-        )
-            .then((result) => {
-                setSubmitStatus('success');
-                form.current.reset();
-            }, (error) => {
-                setSubmitStatus('error');
-            })
-            .finally(() => {
-                setIsSubmitting(false);
-            });
-    };
+              <div className="flex items-center gap-4 group">
+                <div className="w-12 h-12 rounded-full glass-panel flex items-center justify-center text-white/50 group-hover:text-ai-purple group-hover:border-ai-purple/50 transition-all">
+                  <MapPin size={20} />
+                </div>
+                <div>
+                  <p className="text-xs font-mono text-white/40 uppercase tracking-widest mb-1">Location Data</p>
+                  <p className="text-white text-sm md:text-base">Tamil Nadu, India</p>
+                </div>
+              </div>
+            </motion.div>
 
-    return (
-        <section id="contact" className="section" ref={sectionRef}>
-            {/* Background Decor */}
-            <motion.div className="section-decor decor-1" style={{ y: decorY1 }} />
-            <motion.div className="section-decor decor-2" style={{ y: decorY2 }} />
-            <div className="container">
-                <div className="section-header">
-                    <h2 className="section-subtitle">CONNECT</h2>
-                    <h3 className="section-title">START A<br />CONVERSATION</h3>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="flex gap-4 mt-12"
+            >
+              <a href="https://github.com/Nisxzn" target="_blank" rel="noreferrer" className="w-12 h-12 glass-panel flex items-center justify-center text-white hover:bg-white/10 hover:text-ai-cyan transition-colors rounded-none border border-white/20">
+                <Github size={20} />
+              </a>
+              <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="w-12 h-12 glass-panel flex items-center justify-center text-white hover:bg-white/10 hover:text-ai-blue transition-colors rounded-none border border-white/20">
+                <Linkedin size={20} />
+              </a>
+            </motion.div>
+          </div>
+
+          {/* Right Form - Terminal Inspired */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="relative"
+          >
+            {/* Glow Behind Form */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-ai-cyan/5 to-ai-purple/5 blur-[120px] rounded-full pointer-events-none"></div>
+
+            <div className="relative p-[1px] rounded-2xl bg-gradient-to-tr from-white/10 via-white/5 to-white/15 hover:from-ai-cyan/20 hover:via-white/5 hover:to-ai-purple/20 transition-all duration-500 shadow-[0_20px_50px_rgba(0,0,0,0.9),0_0_15px_rgba(255,255,255,0.02)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.9),0_0_30px_rgba(34,211,238,0.12),0_0_50px_rgba(139,92,246,0.06)] relative z-10 group/card">
+              <div className="bg-[#050505]/95 backdrop-blur-3xl rounded-2xl p-8 border border-white/5">
+
+                {/* Terminal Header */}
+                <div className="flex items-center gap-2 mb-8 border-b border-white/10 pb-4">
+                  <div className="w-3 h-3 rounded-full bg-red-500/50"></div>
+                  <div className="w-3 h-3 rounded-full bg-yellow-500/50"></div>
+                  <div className="w-3 h-3 rounded-full bg-green-500/50"></div>
+                  <span className="ml-2 font-mono text-xs text-white/40 tracking-widest">~/contact.sh</span>
                 </div>
 
-                <div className="contact-wrapper">
-                    <div className="contact-info">
-                        <h4 className="info-title">HAVE A VISION?</h4>
-                        <p className="info-desc">
-                            I'm currently accepting new projects. If you're looking for a digital experience that stands out, let's connect.
-                        </p>
+                <form className="flex flex-col gap-6 font-mono">
+                  <div className="group">
+                    <label className="text-xs text-ai-cyan tracking-widest uppercase block mb-2">Name</label>
+                    <input
+                      type="text"
+                      placeholder="Enter your name..."
+                      className="w-full bg-transparent border-b border-white/20 pb-2 text-white placeholder-white/20 focus:outline-none focus:border-ai-cyan transition-colors"
+                    />
+                  </div>
 
-                        <div className="contact-methods">
-                            <div className="contact-method">
-                                <div className="method-icon"><Mail size={32} /></div>
-                                <div>
-                                    <span className="method-label">Direct Channel</span>
-                                    <a href="mailto:nithishparameswaran2005@gmail.com" className="method-link">nithishparameswaran2005@gmail.com</a>
-                                </div>
-                            </div>
-                            <div className="contact-method">
-                                <div className="method-icon"><MapPin size={32} /></div>
-                                <div>
-                                    <span className="method-label">Location</span>
-                                    <span className="method-value">Tamil Nadu, IN</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                  <div className="group">
+                    <label className="text-xs text-ai-purple tracking-widest uppercase block mb-2">Email</label>
+                    <input
+                      type="email"
+                      placeholder="Enter your email..."
+                      className="w-full bg-transparent border-b border-white/20 pb-2 text-white placeholder-white/20 focus:outline-none focus:border-ai-purple transition-colors"
+                    />
+                  </div>
 
-                    <form ref={form} onSubmit={sendEmail} className="contact-form">
-                        <div className="form-group">
-                            <label className="form-label">IDENTITY</label>
-                            <input
-                                type="text"
-                                name="user_name"
-                                className="form-input"
-                                placeholder="YOUR NAME"
-                                required
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label className="form-label">DIGITAL ADDRESS</label>
-                            <input
-                                type="email"
-                                name="user_email"
-                                className="form-input"
-                                placeholder="YOUR EMAIL"
-                                required
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label className="form-label">MISSION BRIEF</label>
-                            <textarea
-                                name="message"
-                                rows="4"
-                                className="form-input textarea"
-                                placeholder="HOW CAN I ASSIST?"
-                                required
-                            ></textarea>
-                        </div>
+                  <div className="group">
+                    <label className="text-xs text-ai-blue tracking-widest uppercase block mb-2">Message</label>
+                    <textarea
+                      rows="4"
+                      placeholder="What to build together?"
+                      className="w-full bg-transparent border-b border-white/20 pb-2 text-white placeholder-white/20 focus:outline-none focus:border-ai-blue transition-colors resize-none"
+                    ></textarea>
+                  </div>
 
-                        <button
-                            type="submit"
-                            className="btn btn-primary has-icon"
-                            disabled={isSubmitting}
-                        >
-                            {isSubmitting ? (
-                                <>
-                                    <Loader2 size={20} className="animate-spin" />
-                                    TRANSMITTING...
-                                </>
-                            ) : (
-                                <>
-                                    <Send size={20} />
-                                    TRANSMIT MESSAGE
-                                </>
-                            )}
-                        </button>
+                  <button
+                    type="button"
+                    className="mt-8 relative w-full py-4 rounded-xl font-mono text-xs tracking-[0.25em] uppercase font-bold text-ai-blue bg-black border border-ai-blue/30 hover:border-ai-blue/60 transition-all duration-300 overflow-hidden group cursor-pointer"
+                    style={{
+                      boxShadow: '0 4px 20px rgba(0,0,0,0.9)'
+                    }}
+                  >
+                    {/* Minimal blue glow background on hover */}
+                    <div className="absolute inset-0 bg-ai-blue/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    
+                    {/* Subtle blue scanner line stripe on hover */}
+                    <motion.div 
+                      initial={{ x: '-100%' }}
+                      whileHover={{ x: '100%' }}
+                      transition={{ duration: 1.2, ease: "easeInOut" }}
+                      className="absolute top-0 bottom-0 left-0 w-1/2 bg-gradient-to-r from-transparent via-ai-blue/15 to-transparent pointer-events-none"
+                    />
 
-                        {submitStatus === 'success' && (
-                            <p className="status-message success">TRANSMISSION SUCCESSFUL.</p>
-                        )}
-                        {submitStatus === 'error' && (
-                            <p className="status-message error">TRANSMISSION FAILED. RETRY.</p>
-                        )}
-                    </form>
-                </div>
+                    <span className="relative z-10 flex items-center justify-center gap-1.5 transition-transform duration-300 group-hover:scale-[1.02]">
+                      Connect
+                    </span>
+                  </button>
+                </form>
+
+              </div>
             </div>
-        </section>
-    );
+          </motion.div>
+
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default Contact;
