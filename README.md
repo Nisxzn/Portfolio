@@ -5,7 +5,7 @@
   <img src="https://img.shields.io/badge/Framer_Motion-black?style=for-the-badge&logo=framer&logoColor=blue" alt="Framer Motion" />
 </div>
 
-<h1 align="center">✨ Nisxzn-ULT Portfolio ✨</h1>
+<h1 align="center">✨ Nisxzn-ULT ✨</h1>
 
 <p align="center">
   A futuristic, cinematic, and highly interactive personal portfolio built with React, Vite, Tailwind CSS, and Framer Motion. 
