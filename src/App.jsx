@@ -9,38 +9,18 @@ import Contact from './components/Contact';
 import Lenis from '@studio-freight/lenis';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
-// Premium high-fidelity Bidirectional ScrollReveal wrapper
+// Premium high-fidelity ScrollReveal wrapper
 const ScrollReveal = ({ children }) => {
-  const [scrollDirection, setScrollDirection] = useState('down');
-
-  useEffect(() => {
-    let lastScrollY = window.scrollY;
-    const updateDirection = () => {
-      const currentScrollY = window.scrollY;
-      // 5px threshold filter to prevent trackpad inertial bouncing jitters
-      if (currentScrollY > lastScrollY + 5) {
-        setScrollDirection('down');
-      } else if (currentScrollY < lastScrollY - 5) {
-        setScrollDirection('up');
-      }
-      lastScrollY = currentScrollY;
-    };
-    window.addEventListener('scroll', updateDirection, { passive: true });
-    return () => window.removeEventListener('scroll', updateDirection);
-  }, []);
-
-  // Bidirectional offset: slide UP when scrolling DOWN, slide DOWN when scrolling UP
-  const initialY = scrollDirection === 'down' ? 35 : -35;
-
   return (
     <motion.div
-      initial={{ opacity: 0, y: initialY }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: false, margin: "-120px" }}
+      viewport={{ once: true, margin: "-80px" }}
       transition={{ 
-        duration: 0.9, 
+        duration: 0.8, 
         ease: [0.16, 1, 0.3, 1] // Custom cubic-bezier for buttery smooth acceleration and deceleration
       }}
+      className="relative w-full"
     >
       {children}
     </motion.div>
@@ -80,7 +60,7 @@ function App() {
   }, []);
 
   return (
-    <div className="bg-ai-bg min-h-screen text-ai-text overflow-hidden relative selection:bg-ai-cyan selection:text-black">
+    <div className="bg-ai-bg min-h-screen text-ai-text overflow-x-hidden relative selection:bg-ai-cyan selection:text-black">
       {/* Global Background Elements */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <img src="/hero-bg.png" alt="" className="absolute inset-0 w-full h-full object-cover opacity-15 blur-[40px]" />
